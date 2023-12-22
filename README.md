@@ -1,0 +1,2 @@
+# UITestsExamProjectSvyrydiukG8
+Svyrydiuk_G8_ExamUITests
