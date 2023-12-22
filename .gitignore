@@ -1,0 +1,14 @@
+.idea
+target
+
+*.log
+*.iml
+*.ipr
+*.iws
+.allure
+*/src/main/java/resources/hiddenConfig.properties
+hiddenConfig.properties
+allure-results
+
+### Mac OS ###
+.DS_StoreG8G
