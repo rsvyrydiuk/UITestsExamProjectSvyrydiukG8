@@ -18,19 +18,20 @@ import org.junit.Test;
 public class SendEmailsTests extends BaseTest {
 
     @Test
-    @Parameters(method = "parametersForValidationMessagesTests")
+    @Parameters(method = "parametersForEmailsTests")
     public void TC_004_createNewPostTestWithDataFromExcel(String recipient, String subject, String emailBody, String messageText) {
-        String subject_title = subject.formatted("TC_002_Svyrydiuk", Util.getDateAndTimeFormatted());
-        String email_Body = emailBody.formatted("New Post Body Svyrydiuk", Util.getDateAndTimeFormatted());
+        String subject_title = subject.formatted("TC_004_Svyrydiuk", Util.getDateAndTimeFormatted());
+        String email_Body = emailBody.formatted("Svyrydiuk" + Util.getDateAndTimeFormatted());
         pageProvider.emailsHomePage().openEmailsHomePageAndLoginIfNeeded()
                 .getHeader().clickOnButtonCreateEmail();
         pageProvider.emailsHomePage().checkIsCreateEmailPageOpened()
                 .createNewEmail(recipient, subject_title, email_Body)
                 .clickOnButtonSendEmail()
                 .checkIsMessageDisplayed(messageText);
+        pageProvider.emailsHomePage().checkSubjectsInSentMessage(subject_title);
     }
 
-    public Collection parametersForValidationMessagesTests() throws IOException {
+    public Collection parametersForEmailsTests() throws IOException {
         final String pathToDataFile = ConfigProvider.configProperties.DATA_FILE_PATH() + "testDataSuit.xls";
         final String sheetName = "createEmailWithExcel";
         final boolean skipFirstRow = false; // skip first row in excel file

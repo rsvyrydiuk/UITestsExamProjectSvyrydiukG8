@@ -30,6 +30,15 @@ public class Util {
         return getDateAndTime("yyyyMMddHHmmss");
     }
 
+    //method to get date for week days from current date
+
+    public static String getDateForWeekDays(int days){
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM");
+        Date date = new Date();
+        date.setDate(date.getDate() + days);
+        return dateFormat.format(date);
+    }
+
     /**
      * Method returned SystemDateAndTime
      */

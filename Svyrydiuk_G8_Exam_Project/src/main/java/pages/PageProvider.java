@@ -20,4 +20,8 @@ public class PageProvider {
     public EmailsHomePage emailsHomePage() {
         return new EmailsHomePage(webDriver);
     }
+
+    public WeatherPage weatherPage() {
+        return new WeatherPage(webDriver);
+    }
 }

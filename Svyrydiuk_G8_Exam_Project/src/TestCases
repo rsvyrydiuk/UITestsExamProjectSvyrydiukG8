@@ -1,7 +1,6 @@
-BASE_URL = "https://aqa-complexapp.onrender.com/"
-USER_NAME = qaauto
+BASE_URL = "https://www.i.ua/"
+USER_NAME = Examtester123
 USER_PASSWORD = 123456qwerty
-USER_EMAIL =romansviridyuk@gmail.com
 
 -----------------------------------------------------------------------
 TestCase #001 - Test Case to verify the functionality of the Login Page
@@ -18,14 +17,14 @@ Steps:
 5. Click on the Sign In button
 
 Expected Result:
-6. Verify user sees the Home Page (sees button "Sign Out" and does not see button "Sign In")
+6. Verify user sees the Home Page (sees button "My profile" and does not see button "Sign In")
 
 Postconditions:
 1. Delete user USER_NAME from the system
 
 -----------------------------------------------------------------------
 
-TestCase #002 - Test Case to verify validation messages  on the Login Page
+TestCase #002 - Test Case to verify validation messages  on the Login Page when user enters invalid data
 
 Preconditions:
 1. Open the browser [optional]
@@ -34,116 +33,101 @@ Preconditions:
 Steps:
 1. Open the browser [optional]
 2. Navigate to the BASE_URL
-3. Enter the username  NEW_USER_NAME
-4. Enter the password  USER_PASSWORD+1
+3. Enter the username   {"Examtester123"} or {"Exam"},
+4. Enter the password   {"tr"} or {"123456qwerty"},
 3. Click on the Sign In button
 
 Expected Result:
-4. Verify user sees the validation message "Invalid username/password" and does not see button "Sign Out"
+4. Verify user sees the validation message "Invalid username/password" and does not see button "My profile"
 
 Postconditions:
-1. Delete user NEW_USER_NAME from the system
-
+1. Delete user USER_NAME from the system
 
 -----------------------------------------------------------------------
 
-TestCase #003 - Test Case to verify the functionality of the registration new unique user
+TestCase #003 - Test Case to verify exchange rate on the Exchange Page
 
 Preconditions:
 1. Open the browser [optional]
 
 Steps:
-1. Open the browser [optional]
-2. Navigate to the BASE_URL
-3. Enter the username  USER_NAME + 'current_time'
-4. Enter the email  USER_EMAIL
-4. Enter the password  USER_PASSWORD
-5. Click on the Sign Up for OurApp button
+1. Open Exchange Rate Page
+2. Enter the amount 100
+3. Select currency USD
+4. Click on the button "Calculate"
 
 Expected Result:
-6. Verify that new user USER_NAME+current_time created and user sees the Home Page (sees button "Sign Out" and does not see button "Sign In")
-7. Verify user sees the message "Hello USER_NAME + 'current_time'" on the page
+5. Verify user sees the result of the calculation
 
-Postconditions:
-1. Delete user USER_NAME+current_time from the system
 
 
 -----------------------------------------------------------------------
 
-TestCase #004 - Test Case to verify the functionality of the creation new post
+TestCase #004 - Test Case to verify sending email
 
 Preconditions:
 1. Open the browser [optional]
 2. Check user USER_NAME exist in the system and if not create a new user with NEW_USER_NAME and USER_PASSWORD
-3. Login as default user USER_NAME
-4. verify that user logged in successfully
 
 Steps:
-1. click on the "Create Post" button
-2. Verify opening of the "Create Post" page --- Save New Post button is displayed
-2. Enter the title "Test Post Title" in the Title field
-3. Enter the content "Test Content" in the Body Content field
-4. Left all other fields as default
-5. Click on the Save New Post button
+
+1. check that user is logged in
+2. click on the button "New message"
+3. enter the email address USER_EMAIL
+4. enter the subject "Test"
+5. enter the text "Test"
+6. click on the button "Send"
 
 Expected Result:
-6. Verify that new post created and user sees the Home Page (sees button "Sign Out" and does not see button "Sign In")
-7. Verify that user redirected to Post page and new post is displayed and has the title "Test Post" and content "Test Content" and info_message "New post successfully created."
+7. Verify user sees the message "Лист успішно відправлено адресатам"
+8. Check sent email in the Sent folder
 
 Postconditions:
-1. Delete the post from the system
-
+1. Delete user USER_NAME from the system
 
 -----------------------------------------------------------------------
 
-TestCase #005 - Test Case to verify the edit functionality of the post
+TestCase #005 - Test Case to verify search email
 
 Preconditions:
 1. Open the browser [optional]
 2. Check user USER_NAME exist in the system and if not create a new user with NEW_USER_NAME and USER_PASSWORD
-3. Login as default user USER_NAME
-4. verify that user logged in successfully
-5. Create a new post with title "Post for editing" and content "Content to Editing"
-6. Verify that post created successfully
 
 Steps:
-1. Click on the Edit post button for the post with title "Post for editing"
-2. Verify opening of the "Edit Post" page --- Update Post button is displayed
-2. Change the title to "Post for editing - updated"
-3. Change the content to "Content to Editing - updated"
-4. Left all other fields as default
-5. Click on the Update Post button
+
+1. check that user is logged in
+2. enter the email address USER_EMAIL
+3. click on the button "Search"
 
 Expected Result:
-6. Verify that post updated and user sees the Home Page (sees button "Sign Out" and does not see button "Sign In")
-7. Verify that post is displayed on the Home Page and has the title "Post for editing - updated" and content "Content to Editing - updated" and info_message "Post successfully updated."
-
+4. Check sent email in the Sent folder
 
 Postconditions:
-1. Delete the post from the system
+1. Delete user USER_NAME from the system
 
 
 -----------------------------------------------------------------------
 
-
-TestCase #006 - Test Case to verify the delete functionality of the post
+TestCase #006 - Test Case to verify weather forecast
 
 Preconditions:
 1. Open the browser [optional]
-2. Check user USER_NAME exist in the system and if not create a new user with NEW_USER_NAME and USER_PASSWORD
-3. Login as default user USER_NAME
-4. verify that user logged in successfully
-5. Create a new post with title "Post for deleting" and content "Content to deleting"
-6. Verify that post created successfully
-
 
 Steps:
-1. Click on the Delete post button for the post with title "Post for deleting"
-2. Verify opening of the "Delete Post" page --- Delete Post button is displayed
-3. Click on the Delete Post button
+
+1. Open the weather forecast page
+2. Enter the city "Harkiv"
+3. Click on the button "Search"
 
 Expected Result:
-4. Verify that post deleted and user sees the info_message abut successfully deleting and Home Page (sees button "Sign Out" and does not see deleted post)
+4. Verify user sees the weather forecast for Harkiv
+5. Verify user sees the weather forecast for 7 days
+
+
+
+
+
+
 
 
 

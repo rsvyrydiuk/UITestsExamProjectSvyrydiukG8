@@ -50,7 +50,7 @@ public class CurrencyExchangeRatePage extends ParentPage {
         enterTextIntoInput(amountCurrencyToSell, amount);
     }
 
-    public void checkExchangeCalculation(float amount) {
+    public void checkExchangeCalculation(double amount) {
         enterAmountCurrencyToSell(String.valueOf(amount));
         double sellUSD = getBuyUSD() * amount;
         logger.info("Sell USD = " + sellUSD);
