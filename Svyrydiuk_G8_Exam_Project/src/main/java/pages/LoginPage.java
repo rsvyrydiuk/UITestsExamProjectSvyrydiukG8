@@ -21,21 +21,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@name='pass']")
     private WebElement inputPassword;
-    @FindBy(id = "username-register")// xpath = ".//input[@id='username-register']"
-    private WebElement inputUsernameRegistration;
 
-    @FindBy(xpath = ".//input[@id='username-register']/..//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
-    private WebElement validationMessageForUserNameRegistrationField;
-    @FindBy(id = "password-register")//xpath = ".//input[@id='password-register']"
-    private WebElement inputPasswordRegistration;
-    @FindBy(id = "email-register")//xpath = ".//input[@id='email-register']"
-    private WebElement inputEmailRegistration;
-    @FindBy(xpath = ".//input[@id='email-register']/following-sibling::div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
-    private WebElement validationMessageForEmailRegistrationField;
-    @FindBy(xpath = ".//input[@id='password-register']/following-sibling::div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
-    private WebElement validationMessageForPasswordRegistrationField;
-    @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
-    private WebElement buttonSignUp;
+
+
 
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorsMessages;
@@ -89,15 +77,6 @@ public class LoginPage extends ParentPage {
         }
     }
 
-    public boolean isButtonSignInVisible() {
-        //try {
-        //WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
-        return isElementDisplayed(buttonSignIn);
-        //} catch (Exception e) {
-        //    return false;
-        // }
-    }
-
     //is button Sign In visible
     public EmailsHomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
@@ -113,95 +92,6 @@ public class LoginPage extends ParentPage {
         checkIsElementNotVisible(inputLogin);
     }
 
-    public void checkUsernameFieldVisible() {
-        checkIsElementVisible(inputLogin);
-    }
-
-    //is password field visible
-
-    public void checkPasswordFieldNotVisible() {
-        checkIsElementNotVisible(inputPassword);
-    }
-
-    public void checkPasswordFieldVisible() {
-        checkIsElementVisible(inputPassword);
-    }
-
-    public void checkSignInButtonNotVisible() {
-        checkIsElementNotVisible(buttonSignIn);
-    }
-
-
-    //enter text into input username registration
-    public LoginPage enterTextIntoInputUsernameRegistration(String username) {
-        enterTextIntoInput(inputUsernameRegistration, username);
-        return this;
-    }
-
-    public boolean isValidationMessageForUserNameFieldVisible() {
-        return isElementDisplayed(validationMessageForUserNameRegistrationField);
-    }
-
-    public LoginPage checkTextValidationMessageForUserNameRegistrationField(String message) {
-        checkTextInElement(validationMessageForUserNameRegistrationField, message);
-        return this;
-    }
-
-    public LoginPage enterTextIntoInputPasswordRegistration(String password) {
-        enterTextIntoInput(inputPasswordRegistration, password);
-        return this;
-    }
-
-    public boolean isValidationMessageForPasswordFieldVisible() {
-        return isElementDisplayed(validationMessageForPasswordRegistrationField);
-    }
-
-    public void checkTextValidationMessageForPasswordRegistrationField(String message) {
-        checkTextInElement(validationMessageForPasswordRegistrationField, message);
-    }
-
-    public boolean isValidationMessageForEmailFieldVisible() {
-        return isElementDisplayed(validationMessageForEmailRegistrationField);
-    }
-
-    public LoginPage enterTextIntoInputEmailRegistration(String email) {
-        enterTextIntoInput(inputEmailRegistration, email);
-        return this;
-    }
-
-    public void checkTextValidationMessageForEmailRegistrationField(String message) {
-        checkTextInElement(validationMessageForEmailRegistrationField, message);
-    }
-
-    public void clickOnButtonSignUp() {
-        clickOnElement(buttonSignUp);
-    }
-
-    public LoginPage checkErrorsMessages(String messages) {
-        //String[] errors = messages.split(";"); error1;error2 -> [error1, error2]
-        String[] expectedErrors = messages.split(";");
-
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
-                By.xpath(listErrorsMessagesLocator), expectedErrors.length));
-
-        Util.waitABit(1);
-        Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());
-
-        ArrayList<String> actualErrors = new ArrayList<>();
-        for (WebElement element : listErrorsMessages) {
-            actualErrors.add(element.getText());
-        }
-        SoftAssertions softAssertions = new SoftAssertions();
-        for (int i = 0; i < expectedErrors.length; i++) {
-            softAssertions.assertThat(expectedErrors[i])
-                    .as("Error " + i)
-                    .isIn(actualErrors);
-        }
-
-        softAssertions.assertAll(); // check all assertion
-
-
-        return this;
-    }
+    public void checkPasswordFieldNotVisible() { checkIsElementNotVisible(inputPassword); }
 
 }
