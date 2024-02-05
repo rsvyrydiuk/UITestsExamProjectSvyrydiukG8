@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherPage extends ParentPage {
+    final int COUNT_OF_DAYS = 7;
 
     @FindBy(xpath = ".//a[@title='перейти до погоди на весь тиждень' and text()='Київ']")
     private WebElement weatherByCityName;
@@ -31,7 +32,7 @@ public class WeatherPage extends ParentPage {
 
     @Override
     String getRelativeUrl() {
-        return null;
+        return "https://weather.i.ua/";
     }
 
     public void openWeatherPage() {
@@ -56,18 +57,18 @@ public class WeatherPage extends ParentPage {
     }
 
     public void checkIsWeatherPageOpenedForSelectedCity(String cityName) {
-        isElementDisplayed(titleWeatherPage);
+        checkIsElementVisible(titleWeatherPage);
         WebElement city = webDriver.findElement(By.xpath(".//h1[text()='Погода у " + cityName + "']"));
-        isElementDisplayed(city);
+        checkIsElementVisible(city);
     }
 
     public WeatherPage checkDaysForWeek() {
         webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
-                By.xpath(".//li/h4"), 7));
+                By.xpath(".//li/h4"), COUNT_OF_DAYS));
         //Util.waitABit(1);
 
         ArrayList<String> expectedWeekDays = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < COUNT_OF_DAYS; i++) {
             expectedWeekDays.add(Util.getDateForWeekDays(i));
         }
         ArrayList<String> actualWeekDays = new ArrayList<>();
@@ -75,7 +76,7 @@ public class WeatherPage extends ParentPage {
             actualWeekDays.add(element.getText());
         }
         SoftAssertions softAssertions = new SoftAssertions();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < COUNT_OF_DAYS; i++) {
             softAssertions.assertThat(actualWeekDays.get(i))
                     .as("Result " + i)
                     .contains(expectedWeekDays.get(i));

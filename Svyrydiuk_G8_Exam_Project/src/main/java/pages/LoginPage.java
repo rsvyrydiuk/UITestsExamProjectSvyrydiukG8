@@ -13,7 +13,6 @@ import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@value='Увійти']")
-    // this element will crreated in PageFactory in CommonActionsWithElements.java
     private WebElement buttonSignIn;
 
     @FindBy(xpath = ".//input[@name='login']")
@@ -21,6 +20,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@name='pass']")
     private WebElement inputPassword;
+
+    @FindBy(xpath = ".//div[text()='Невірний логін або пароль']")
+    private WebElement warningMessage;
 
 
 
@@ -54,30 +56,25 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterTextIntoInputLogin(String login) {
-        // WebElement inputLogin = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         enterTextIntoInput(inputLogin, login);
     }
 
     public void enterTextIntoInputPassword(String password) {
-        //WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         enterTextIntoInput(inputPassword, password);
     }
 
     public void clickOnButtonSignIn() {
-        //WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[text()='Sign In']"));
         clickOnElement(buttonSignIn);
     }
 
     public boolean isWarningMessageVisible() {
         try {
-            WebElement warningMessage = webDriver.findElement(By.xpath(".//div[text()='Невірний логін або пароль']"));
             return isElementDisplayed(warningMessage);
         } catch (Exception e) {
             return false;
         }
     }
 
-    //is button Sign In visible
     public EmailsHomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -86,7 +83,6 @@ public class LoginPage extends ParentPage {
         return new EmailsHomePage(webDriver);
     }
 
-    //is username field visible
 
     public void checkUsernameFieldNotVisible() {
         checkIsElementNotVisible(inputLogin);
